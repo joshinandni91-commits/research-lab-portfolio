@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RE-SEARCH LAB — Economics, Evidence & Analysis</title>
+<meta name="description" content="RE-SEARCH LAB — economics research, policy analysis, econometrics, writing, reporting and research communication.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{
+ --ink:#e9ece6; --muted:#9aa39b; --paper:#111613; --paper2:#181d1a;
+ --olive:#687567; --moss:#56645a; --rust:#a97862; --line:#4d5750;
+ --white:#e9ece6; --dark:#0b0e0d; --grid:rgba(225,232,224,.10);
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:radial-gradient(#222 0.5px,transparent .5px);background-size:8px 8px;z-index:100}
+a{color:inherit;text-decoration:none}.mono{font-family:"DM Mono",monospace;letter-spacing:.07em}
+nav{position:fixed;top:0;left:0;right:0;z-index:80;height:62px;display:flex;justify-content:space-between;align-items:center;padding:0 28px;background:rgba(17,22,19,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{font:500 13px "DM Mono",monospace}.navlinks{display:flex;gap:24px;font:400 10px "DM Mono",monospace;text-transform:uppercase}.navlinks a:hover{color:var(--rust)}
+.hero{min-height:100vh;padding:145px 6vw 80px;display:grid;grid-template-columns:1fr .85fr;gap:7vw;align-items:center;
+background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
+.eyebrow{font:500 10px "DM Mono",monospace;text-transform:uppercase;color:var(--moss);letter-spacing:.16em;margin-bottom:22px}
+h1{font-family:"Libre Baskerville",serif;font-size:clamp(64px,10vw,145px);line-height:.82;letter-spacing:-.075em;margin:0;font-weight:700}
+.hero p{font-size:clamp(17px,2vw,25px);line-height:1.35;max-width:690px;margin:42px 0 0}
+.hero p em{font-family:"Libre Baskerville",serif}
+.graph{height:540px;position:relative;border:1px solid var(--line);background:rgba(24,29,26,.68);overflow:hidden}
+.graph .axis-x{position:absolute;left:7%;right:5%;bottom:16%;height:1px;background:var(--ink)}
+.graph .axis-y{position:absolute;left:12%;top:8%;bottom:10%;width:1px;background:var(--ink)}
+.graph .label{position:absolute;font:9px "DM Mono",monospace;text-transform:uppercase;color:var(--muted)}
+.graph .y{left:4%;top:8%}.graph .x{right:5%;bottom:11%}
+.curve{position:absolute;left:13%;bottom:16%;width:75%;height:72%;border-bottom:2px solid var(--rust);border-radius:0 0 80% 0;transform:rotate(-28deg);clip-path:polygon(0 92%,8% 72%,17% 57%,28% 44%,40% 33%,55% 24%,70% 16%,85% 9%,100% 3%,100% 100%,0 100%);background:transparent}
+.curve2{position:absolute;left:14%;bottom:17%;width:70%;height:68%;border-top:2px solid var(--moss);transform:rotate(29deg);clip-path:polygon(0 4%,15% 9%,30% 17%,45% 27%,60% 40%,73% 55%,85% 71%,100% 92%,100% 100%,0 100%)}
+.dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--rust);left:61%;bottom:43%;box-shadow:0 0 0 6px rgba(155,101,78,.15)}
+.graph-note{position:absolute;left:19%;top:13%;font:10px "DM Mono",monospace;line-height:1.7}
+.graph-note b{color:var(--rust)}
+.float-tag{position:absolute;right:8%;top:31%;padding:9px 11px;border:1px solid var(--ink);background:#171c19;color:var(--white);font:9px "DM Mono",monospace;transform:rotate(4deg)}
+.scroll{position:absolute;bottom:24px;left:6vw;font:9px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.14em}
+.ticker{background:var(--dark);color:var(--white);padding:13px 0;overflow:hidden;white-space:nowrap;font:10px "DM Mono",monospace}
+.ticker span{display:inline-block;padding-left:100%;animation:t 26s linear infinite}@keyframes t{to{transform:translateX(-100%)}}
+section{padding:120px 6vw}.sectiontop{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--ink);padding-bottom:18px;margin-bottom:52px}.sectiontop h2{font-family:"Libre Baskerville",serif;font-size:clamp(48px,7vw,105px);line-height:.85;letter-spacing:-.06em;margin:0}.sectiontop p{max-width:330px;font:10px "DM Mono",monospace;line-height:1.7;text-transform:uppercase;color:var(--muted)}
+.archive{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.drawer{min-height:400px;border:1px solid var(--line);position:relative;padding:26px;background:linear-gradient(145deg,#1b211e,#151a17);cursor:pointer;overflow:hidden;transition:.45s}
+.drawer:hover{transform:translateY(-9px);box-shadow:12px 14px 0 rgba(63,75,66,.12)}
+.drawer:before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:var(--moss);opacity:.8}
+.tab{position:absolute;top:8px;right:18px;font:9px "DM Mono",monospace}
+.num{font:9px "DM Mono",monospace;color:var(--rust)}
+.drawer h3{font-family:"Libre Baskerville",serif;font-size:43px;line-height:.9;margin:92px 0 18px;letter-spacing:-.05em}
+.drawer p{font-size:14px;line-height:1.45;color:#a3aba4;max-width:300px}.open{position:absolute;bottom:23px;left:26px;font:9px "DM Mono",monospace}
+.drawer .mini-chart{position:absolute;right:24px;bottom:50px;width:120px;height:70px;border-bottom:1px solid var(--line);border-left:1px solid var(--line)}
+.mini-chart:after{content:"";position:absolute;left:8px;right:7px;bottom:8px;height:50px;border-top:2px solid var(--rust);transform:skewY(-24deg)}
+.dark{background:var(--dark);color:var(--white)}.dark .sectiontop{border-color:#69716b}.dark .sectiontop p{color:#9da59e}
+.method{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid #69716b}.method div{min-height:210px;padding:20px;border-right:1px solid #69716b;position:relative}.method div:last-child{border:0}
+.method span{font:9px "DM Mono",monospace;color:#9da59e}.method h3{font-family:"Libre Baskerville",serif;font-size:27px;margin-top:62px}.method b{color:#bd8974}
+.index{display:grid;grid-template-columns:1.4fr .6fr;gap:7vw;align-items:start}.index-copy{font-size:clamp(22px,3vw,38px);line-height:1.12;font-family:"Libre Baskerville",serif}.index-copy em{color:var(--rust)}
+.factboard{border-top:1px solid var(--ink);font:10px "DM Mono",monospace}.fact{display:flex;justify-content:space-between;padding:17px 0;border-bottom:1px solid var(--line)}.fact strong{font-size:18px;font-family:Manrope}.fact small{color:var(--muted);max-width:230px;text-align:right}
+.works{border-top:1px solid var(--ink)}.work{display:grid;grid-template-columns:70px 1.2fr 1fr 100px;gap:25px;padding:25px 0;border-bottom:1px solid var(--line);align-items:center;transition:.25s}.work:hover{padding-left:12px;background:rgba(255,255,255,.035)}
+.work .n{font:10px "DM Mono",monospace;color:var(--rust)}.work h3{font-family:"Libre Baskerville",serif;font-size:25px;margin:0}.work p{font-size:13px;line-height:1.45;color:var(--muted);margin:0}.work a{font:9px "DM Mono",monospace;text-align:right}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:8vw}.about h2{font-family:"Libre Baskerville",serif;font-size:clamp(50px,6vw,92px);line-height:.87;letter-spacing:-.06em;margin:0}.about p{font-size:18px;line-height:1.55;max-width:650px}.about .quote{font-family:"Libre Baskerville",serif;font-size:31px;line-height:1.15;margin-top:35px}
+.contact{min-height:68vh;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}.contact h2{font-family:"Libre Baskerville",serif;font-size:clamp(65px,9vw,135px);line-height:.8;letter-spacing:-.07em;margin:0}.contact p{font-size:20px;line-height:1.5}.contact a{display:inline-block;margin-top:22px;padding:15px 19px;border:1px solid var(--white);font:10px "DM Mono",monospace;text-transform:uppercase}.contact a:hover{background:var(--white);color:var(--dark)}
+footer{padding:28px 6vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;font:9px "DM Mono",monospace}
+.modal{position:fixed;inset:0;background:rgba(15,18,17,.78);z-index:120;display:none;align-items:center;justify-content:center;padding:25px}.modal.show{display:flex}.modalbox{max-width:750px;width:100%;background:var(--paper);padding:45px;border:1px solid var(--line);position:relative}.modalbox button{position:absolute;right:15px;top:12px;border:0;background:none;font-size:25px;cursor:pointer}.modalbox h2{font:700 50px "Libre Baskerville",serif;line-height:.9;margin:20px 0}.modalbox p{font-size:17px;line-height:1.5}.meta{font:9px "DM Mono",monospace;color:var(--rust);text-transform:uppercase}
+@media(max-width:850px){
+ nav{padding:0 18px}.navlinks{display:none}.hero{grid-template-columns:1fr;padding-top:120px}.graph{height:430px}.archive{grid-template-columns:1fr}.method{grid-template-columns:1fr 1fr}.method div:nth-child(2n){border-right:0}.method div{border-bottom:1px solid #69716b}.index,.about,.contact{grid-template-columns:1fr;gap:50px}.work{grid-template-columns:45px 1fr}.work p{grid-column:2}.work a{grid-column:2;text-align:left}.sectiontop{align-items:start;flex-direction:column;gap:20px}
+}
+
+.pubgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#4d5750;border:1px solid #4d5750}
+.pub{min-height:290px;background:#151a17;padding:30px;display:flex;flex-direction:column}
+.pub .num{font:9px "DM Mono",monospace;color:var(--rust)}
+.pub h3{font:700 35px "Libre Baskerville",serif;line-height:.98;letter-spacing:-.04em;margin:70px 0 14px}
+.pub p{font-size:14px;line-height:1.5;color:var(--muted);max-width:600px}
+.pub a{margin-top:auto;font:9px "DM Mono",monospace;color:var(--white);letter-spacing:.08em}
+.downloadrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.downloadrow a{border:1px solid #4d5750;padding:13px 16px;font:9px "DM Mono",monospace}
+.downloadrow a:hover{background:#e9ece6;color:#0b0e0d}
+@media(max-width:850px){.pubgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><a class="logo" href="#top">RE-SEARCH LAB / ECONOMICS</a><div class="navlinks"><a href="#archive">Archive</a><a href="#publications">Publications</a><a href="#method">Method</a><a href="#work">Work</a><a href="#contact">Contact</a></div></nav>
+
+<section class="hero" id="top">
+ <div>
+  <div class="eyebrow">Economics · Evidence · Research · Analysis</div>
+  <h1>RE-<br>SEARCH<br>LAB.</h1>
+  <p>Looking at economic questions <em>again</em> — through evidence, data, research, writing and disciplined analysis.</p>
+ </div>
+ <div class="graph" aria-label="Decorative economics graph">
+   <div class="axis-x"></div><div class="axis-y"></div><span class="label y">value / outcome</span><span class="label x">policy / time / quantity</span>
+   <div class="curve"></div><div class="curve2"></div><div class="dot"></div>
+   <div class="graph-note">FIG. 01<br><b>THE POINT IS NOT<br>THE CHART.</b><br>THE POINT IS<br>WHAT IT TELLS US.</div>
+   <div class="float-tag">EVIDENCE ≠ NOISE</div>
+ </div>
+ <div class="scroll">↓ scroll through the archive</div>
+</section>
+
+<div class="ticker"><span>MICRO · MACRO · DEVELOPMENT · LABOUR · BEHAVIOURAL ECONOMICS · PUBLIC POLICY · ENERGY · ECONOMETRICS · EVIDENCE · REPORTING · WRITING · MICRO · MACRO · DEVELOPMENT · LABOUR · BEHAVIOURAL ECONOMICS · PUBLIC POLICY · ENERGY · ECONOMETRICS · </span></div>
+
+<section id="archive">
+ <div class="sectiontop"><h2>THE<br>ARCHIVE</h2><p>A living index of research, writing, analytical work and research systems. Open a drawer.</p></div>
+ <div class="archive">
+  <article class="drawer" data-title="ARTICLES" data-copy="Research-backed economics and policy writing. Published work includes analysis of India's skill-development and demographic-dividend gap, trap economics and development constraints, and Rajasthan-focused policy commentary.">
+   <span class="num">01 / PUBLISHING</span><span class="tab">DRAWER / A</span><h3>ARTICLES</h3><p>Economic ideas translated into readable, evidence-led arguments.</p><div class="mini-chart"></div><div class="open">OPEN ↗</div>
+  </article>
+  <article class="drawer" data-title="REPORTS" data-copy="Applied reporting and documentation, including an impact-assessment report for the Silai Se Pehchan livelihood programme and policy-oriented analytical reporting.">
+   <span class="num">02 / REPORTING</span><span class="tab">DRAWER / B</span><h3>REPORTS</h3><p>Evidence organised into documents people can actually use.</p><div class="mini-chart"></div><div class="open">OPEN ↗</div>
+  </article>
+  <article class="drawer" data-title="RESEARCH" data-copy="Research across development economics, labour markets, behavioural economics, public policy, housing and energy. Work includes PMAY and health outcomes, apprenticeship underutilisation, and behavioural constraints in LPG adoption.">
+   <span class="num">03 / EVIDENCE</span><span class="tab">DRAWER / C</span><h3>RESEARCH</h3><p>Questions, literature, field evidence and policy implications.</p><div class="mini-chart"></div><div class="open">OPEN ↗</div>
+  </article>
+  <article class="drawer" data-title="DATA + ECONOMETRICS" data-copy="Quantitative work using Excel, EViews, Tableau, SPSS/SEM workflows and applied statistical methods. Research experience includes survey design, primary data collection, cleaning, statistical analysis and regression modelling.">
+   <span class="num">04 / QUANTITATIVE</span><span class="tab">DRAWER / D</span><h3>DATA</h3><p>Numbers examined until they become interpretable evidence.</p><div class="mini-chart"></div><div class="open">OPEN ↗</div>
+  </article>
+  <article class="drawer" data-title="LEARNING + TEST SYSTEMS" data-copy="Economics and statistics learning systems built around PYQ-first prioritisation, topic diagnostics, formula revision and structured practice. The current study work covers micro, macro, statistics, econometrics, mathematical economics and related areas.">
+   <span class="num">05 / LEARNING</span><span class="tab">DRAWER / E</span><h3>LEARNING</h3><p>Complex economics and statistics reorganised into usable systems.</p><div class="mini-chart"></div><div class="open">OPEN ↗</div>
+  </article>
+  <article class="drawer" data-title="DIGITAL RESEARCH" data-copy="A growing digital layer for research: small analytical tools, dashboards, calculators, research interfaces and educational experiments. This drawer is designed to expand as new tools are built.">
+   <span class="num">06 / DIGITAL</span><span class="tab">DRAWER / F</span><h3>DIGITAL</h3><p>Research problems turned into small, useful digital objects.</p><div class="mini-chart"></div><div class="open">OPEN ↗</div>
+  </article>
+ </div>
+</section>
+
+<section class="dark" id="method">
+ <div class="sectiontop"><h2>THE<br>METHOD</h2><p>Research is not a pile of information. It is a sequence: question, evidence, analysis, interpretation, communication.</p></div>
+ <div class="method">
+  <div><span>01</span><h3>QUESTION</h3></div><div><span>02</span><h3>EVIDENCE</h3></div><div><span>03</span><h3>ANALYSIS</h3></div><div><span>04</span><h3>INTERPRET</h3></div><div><span>05</span><h3><b>OUTPUT</b></h3></div>
+ </div>
+</section>
+
+<section>
+ <div class="sectiontop"><h2>ECONOMIC<br>LENS</h2><p>Areas of research and analytical interest represented across the work.</p></div>
+ <div class="index">
+  <div class="index-copy">The work sits where <em>economics</em>, evidence and implementation meet — with particular interest in development, labour, behaviour, public policy, climate and energy.</div>
+  <div class="factboard">
+   <div class="fact"><strong>01</strong><small>Development Economics<br>Policy effectiveness & outcomes</small></div>
+   <div class="fact"><strong>02</strong><small>Behavioural Economics<br>Adoption, information & constraints</small></div>
+   <div class="fact"><strong>03</strong><small>Labour Economics<br>Skills, apprenticeships & jobs</small></div>
+   <div class="fact"><strong>04</strong><small>Public Policy<br>Evidence, institutions & implementation</small></div>
+   <div class="fact"><strong>05</strong><small>Energy & Climate<br>Policy and economic stability</small></div>
+  </div>
+ </div>
+</section>
+
+
+<section id="publications">
+ <div class="sectiontop"><h2>PUBLICATIONS<br>& PROOF</h2><p>Published writing, public-facing research and downloadable portfolio material. The archive is built to show evidence before claims.</p></div>
+ <div class="pubgrid">
+  <article class="pub"><span class="num">P01 / SUBSTACK</span><h3>Access Is Not Adoption</h3><p>Behavioural analysis of the gap between LPG access and sustained adoption under PMUY — asking why infrastructure alone does not guarantee behavioural change.</p><a href="https://substack.com/@nandni" target="_blank">READ / ECONOMIC LENS →</a></article>
+  <article class="pub"><span class="num">P02 / SUBSTACK</span><h3>When Fear Becomes the Supply Chain</h3><p>An economic-behavioural reading of panic, information asymmetry and demand surges around India's LPG disruption.</p><a href="https://substack.com/@nandni" target="_blank">READ / ECONOMIC LENS →</a></article>
+  <article class="pub"><span class="num">P03 / CAP RAJASTHAN</span><h3>Skill Development → Jobs?</h3><p>Why India's skill-development investments do not automatically translate into employment: a behavioural market-failure lens on the demographic dividend.</p><a href="https://caprajasthan.org/author/nandni-joshi/" target="_blank">READ / CAP RAJASTHAN →</a></article>
+  <article class="pub"><span class="num">P04 / CAP RAJASTHAN</span><h3>Trap Economics</h3><p>Analysis of development constraints and why standard interventions can underperform when behavioural and institutional frictions are ignored.</p><a href="https://caprajasthan.org/author/nandni-joshi/" target="_blank">READ / CAP RAJASTHAN →</a></article>
+ </div>
+ <div class="downloadrow">
+  <a href="assets/Nandni-Joshi-CV.pdf" target="_blank">CV / PDF ↗</a>
+  <a href="assets/Nandni-Joshi-Portfolio.pdf" target="_blank">PORTFOLIO / PDF ↗</a>
+  <a href="assets/Nandni-Joshi-Portfolio-All.pdf" target="_blank">FULL WORK FILE ↗</a>
+ </div>
+</section>
+
+<section id="work">
+ <div class="sectiontop"><h2>SELECTED<br>WORK</h2><p>Real work only. Each item can later be linked to its full paper, article, report or supporting file.</p></div>
+ <div class="works">
+  <div class="work"><div class="n">001</div><h3>PMAY & Health Outcomes</h3><p>Policy review + secondary data analysis examining housing quality, sanitation and household well-being; consolidated into a structured dissertation.</p><a href="#contact">DETAILS →</a></div>
+  <div class="work"><div class="n">002</div><h3>Silai Se Pehchan — Impact Evaluation</h3><p>Primary telephonic survey of 400+ beneficiaries over three years; impact assessment and identification of implementation gaps.</p><a href="#contact">DETAILS →</a></div>
+  <div class="work"><div class="n">003</div><h3>Apprenticeship Underutilisation</h3><p>Behavioural-economics analysis of institutional, informational and behavioural barriers affecting youth apprenticeship uptake.</p><a href="#contact">DETAILS →</a></div>
+  <div class="work"><div class="n">004</div><h3>PMUY Behavioural Research</h3><p>Research on sustained LPG adoption using survey design, primary data, Chi-square, Spearman, regression modelling and SEM.</p><a href="#contact">DETAILS →</a></div>
+  <div class="work"><div class="n">005</div><h3>Economic & Policy Writing</h3><p>Published and developing work on skill development, behavioural market failures, trap economics and policy implementation.</p><a href="#contact">DETAILS →</a></div>
+  <div class="work"><div class="n">006</div><h3>Climate Policy Mapping</h3><p>Comparative mapping of national and state climate policies against India's NDC commitments, including policy instruments and implementation mechanisms.</p><a href="#contact">DETAILS →</a></div>
+ </div>
+</section>
+
+<section class="dark">
+ <div class="about">
+  <div><div class="eyebrow">ABOUT THE RESEARCHER</div><h2>THE WORK<br>COMES<br>FIRST.</h2></div>
+  <div>
+   <p>RE-SEARCH LAB is an economics-focused research portfolio built around applied research, evidence synthesis, quantitative analysis, policy writing and clear communication.</p>
+   <p>The researcher works across public policy, development economics, behavioural economics, labour, climate and energy, with experience spanning primary data, secondary research, statistical analysis, reporting and academic presentation.</p>
+   <div class="quote">"Look again. The useful finding is often hiding behind the first answer."</div>
+  </div>
+ </div>
+</section>
+
+<section id="contact" class="dark">
+ <div class="contact">
+  <div><div class="eyebrow">CONTACT / OPEN CHANNEL</div><h2>LET'S<br>RE-SEARCH.</h2></div>
+  <div>
+   <p>For economics research, analytical work, reports, research writing, data work, publications or collaboration:</p>
+   <a href="mailto:YOUR_NANDINI_EMAIL_HERE">EMAIL THE LAB →</a><br>
+   <a href="https://www.linkedin.com/in/nandni-joshi-517635232" target="_blank" rel="noopener">LINKEDIN →</a><br><a href="https://www.instagram.com/notesbynandu/" target="_blank" rel="noopener">NOTES BY NANDU / INSTAGRAM →</a>
+  </div>
+ </div>
+</section>
+
+<footer><span>RE-SEARCH LAB / ECONOMICS</span><span>SEARCH AGAIN · FIND MORE</span></footer>
+
+<div class="modal" id="modal"><div class="modalbox"><button onclick="closeModal()">×</button><div class="meta">ARCHIVE FILE</div><h2 id="mt"></h2><p id="mc"></p><p class="mono" style="font-size:10px;color:var(--muted)">This drawer is ready for a real article, report, PDF, presentation or dataset link.</p></div></div>
+<script>
+const modal=document.getElementById('modal'),mt=document.getElementById('mt'),mc=document.getElementById('mc');
+document.querySelectorAll('.drawer').forEach(d=>d.onclick=()=>{mt.textContent=d.dataset.title;mc.textContent=d.dataset.copy;modal.classList.add('show')});
+function closeModal(){modal.classList.remove('show')}
+modal.onclick=e=>{if(e.target===modal)closeModal()}
+document.onkeydown=e=>{if(e.key==='Escape')closeModal()}
+</script>
+</body>
+</html>
