@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Research Task Manager — To-Do List</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --ink: #e9ece6;
+            --muted: #9aa39b;
+            --paper: #111613;
+            --paper2: #181d1a;
+            --olive: #687567;
+            --moss: #56645a;
+            --rust: #a97862;
+            --line: #4d5750;
+            --white: #e9ece6;
+            --dark: #0b0e0d;
+            --grid: rgba(225, 232, 224, 0.10);
+            --success: #6ba876;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Manrope, Arial, sans-serif;
+            overflow-x: hidden;
+            padding: 40px 20px;
+        }
+
+        body:before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.16;
+            background-image: radial-gradient(#222 0.5px, transparent 0.5px);
+            background-size: 8px 8px;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 80;
+            height: 62px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 28px;
+            background: rgba(17, 22, 19, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo {
+            font: 500 13px "DM Mono", monospace;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logo:hover {
+            color: var(--rust);
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 24px;
+            font: 400 10px "DM Mono", monospace;
+            text-transform: uppercase;
+        }
+
+        .navlinks a {
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .navlinks a:hover {
+            color: var(--rust);
+        }
+
+        .header {
+            text-align: center;
+            margin: 100px 0 50px;
+        }
+
+        .header h1 {
+            font-family: "Libre Baskerville", serif;
+            font-size: 64px;
+            line-height: 1.2;
+            margin: 0 0 15px;
+            letter-spacing: -0.075em;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: var(--muted);
+            margin: 0;
+            font-family: "DM Mono", monospace;
+        }
+
+        .input-section {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 12px;
+            margin-bottom: 40px;
+            border: 1px solid var(--line);
+            padding: 20px;
+            background: rgba(24, 29, 26, 0.68);
+        }
+
+        .input-section input {
+            background: var(--paper2);
+            border: 1px solid var(--line);
+            color: var(--ink);
+            padding: 12px 16px;
+            font-family: "Manrope", sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-section input:focus {
+            border-color: var(--rust);
+            box-shadow: 0 0 0 3px rgba(169, 120, 98, 0.1);
+        }
+
+        .input-section input::placeholder {
+            color: var(--muted);
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: 1px solid var(--rust);
+            background: var(--rust);
+            color: var(--dark);
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 16px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink);
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.08em;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--rust);
+            color: var(--rust);
+        }
+
+        .filter-btn.active {
+            background: var(--rust);
+            border-color: var(--rust);
+            color: var(--dark);
+        }
+
+        .todo-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .todo-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 15px;
+            align-items: center;
+            padding: 18px 20px;
+            border: 1px solid var(--line);
+            background: linear-gradient(145deg, #1b211e, #151a17);
+            transition: 0.3s;
+        }
+
+        .todo-item:hover {
+            border-color: var(--rust);
+            box-shadow: 0 4px 8px rgba(63, 75, 66, 0.1);
+        }
+
+        .todo-item.completed {
+            opacity: 0.6;
+        }
+
+        .todo-item.completed .todo-text {
+            text-decoration: line-through;
+            color: var(--muted);
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--rust);
+        }
+
+        .todo-text {
+            word-break: break-word;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .todo-meta {
+            font: 9px "DM Mono", monospace;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .todo-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .delete-btn {
+            background: rgba(169, 120, 98, 0.2);
+            border: 1px solid var(--rust);
+            color: var(--rust);
+            padding: 8px 12px;
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .delete-btn:hover {
+            background: var(--rust);
+            color: var(--dark);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+            border-top: 1px solid var(--line);
+            padding-top: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid var(--line);
+            background: rgba(24, 29, 26, 0.5);
+        }
+
+        .stat-number {
+            font-family: "DM Mono", monospace;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--rust);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font: 9px "DM Mono", monospace;
+            text-transform: uppercase;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--muted);
+        }
+
+        .empty-state h3 {
+            font-family: "Libre Baskerville", serif;
+            font-size: 28px;
+            margin: 20px 0;
+            color: var(--ink);
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .priority-badge {
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            padding: 4px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
+
+        .priority-high {
+            background: rgba(169, 120, 98, 0.2);
+            color: var(--rust);
+        }
+
+        .priority-medium {
+            background: rgba(107, 168, 118, 0.2);
+            color: var(--success);
+        }
+
+        .priority-low {
+            background: rgba(154, 163, 155, 0.2);
+            color: var(--muted);
+        }
+
+        footer {
+            padding: 28px 0;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            font: 9px "DM Mono", monospace;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 850px) {
+            .header h1 {
+                font-size: 42px;
+            }
+
+            .input-section {
+                grid-template-columns: 1fr;
+            }
+
+            .todo-item {
+                grid-template-columns: auto 1fr;
+            }
+
+            .todo-actions {
+                grid-column: 2;
+                justify-content: flex-end;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 0 18px;
+            }
+
+            .navlinks {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="logo" href="index.html">RE-SEARCH LAB / TASKS</a>
+        <div class="navlinks">
+            <a href="index.html">Portfolio</a>
+            <a href="todo.html">Task Manager</a>
+            <a href="clock.html">Global Clock</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>RESEARCH TASK MANAGER</h1>
+            <p>Track, prioritize, and complete your research work</p>
+        </div>
+
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="Add a new task...">
+            <select id="prioritySelect" style="background: var(--paper2); border: 1px solid var(--line); color: var(--ink); padding: 12px 16px; font-family: Manrope, sans-serif; font-size: 14px;">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+            </select>
+            <button class="btn" onclick="addTask()">ADD TASK</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">Total Tasks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="completedCount">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="remainingCount">0</div>
+                <div class="stat-label">Remaining</div>
+            </div>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterTasks('all')">ALL</button>
+            <button class="filter-btn" onclick="filterTasks('active')">ACTIVE</button>
+            <button class="filter-btn" onclick="filterTasks('completed')">COMPLETED</button>
+            <button class="filter-btn" onclick="filterTasks('high')">HIGH PRIORITY</button>
+            <button class="filter-btn" onclick="clearAll()">CLEAR ALL</button>
+        </div>
+
+        <div class="todo-list" id="todoList"></div>
+
+        <footer>
+            <span>RE-SEARCH LAB / TASK MANAGER</span>
+            <span>ORGANIZED · PRODUCTIVE · PERSISTENT</span>
+        </footer>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'research_tasks';
+        let tasks = [];
+        let currentFilter = 'all';
+
+        // Load tasks from localStorage
+        function loadTasks() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            tasks = stored ? JSON.parse(stored) : [];
+            renderTasks();
+            updateStats();
+        }
+
+        // Save tasks to localStorage
+        function saveTasks() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+        }
+
+        // Add new task
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const priority = document.getElementById('prioritySelect').value;
+            const taskText = input.value.trim();
+
+            if (!taskText) {
+                alert('Please enter a task');
+                return;
+            }
+
+            const task = {
+                id: Date.now(),
+                text: taskText,
+                completed: false,
+                priority: priority,
+                created: new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+            };
+
+            tasks.unshift(task);
+            saveTasks();
+            input.value = '';
+            document.getElementById('prioritySelect').value = 'medium';
+            renderTasks();
+            updateStats();
+        }
+
+        // Toggle task completion
+        function toggleTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.completed = !task.completed;
+                saveTasks();
+                renderTasks();
+                updateStats();
+            }
+        }
+
+        // Delete task
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            saveTasks();
+            renderTasks();
+            updateStats();
+        }
+
+        // Filter tasks
+        function filterTasks(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            renderTasks();
+        }
+
+        // Clear all tasks
+        function clearAll() {
+            if (confirm('Are you sure you want to delete all tasks? This cannot be undone.')) {
+                tasks = [];
+                saveTasks();
+                renderTasks();
+                updateStats();
+                currentFilter = 'all';
+                document.querySelectorAll('.filter-btn').forEach((btn, idx) => {
+                    btn.classList.toggle('active', idx === 0);
+                });
+            }
+        }
+
+        // Render tasks
+        function renderTasks() {
+            const list = document.getElementById('todoList');
+            let filtered = tasks;
+
+            if (currentFilter === 'active') {
+                filtered = tasks.filter(t => !t.completed);
+            } else if (currentFilter === 'completed') {
+                filtered = tasks.filter(t => t.completed);
+            } else if (currentFilter === 'high') {
+                filtered = tasks.filter(t => t.priority === 'high');
+            }
+
+            if (filtered.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No tasks yet</h3>
+                        <p>Add a task to get started with your research work</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = filtered.map(task => `
+                <div class="todo-item ${task.completed ? 'completed' : ''}">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox" ${task.completed ? 'checked' : ''} 
+                               onchange="toggleTask(${task.id})">
+                    </div>
+                    <div>
+                        <div class="todo-text">${escapeHtml(task.text)}</div>
+                        <div class="todo-meta">
+                            <span class="priority-badge priority-${task.priority}">${task.priority}</span>
+                            • ${task.created}
+                        </div>
+                    </div>
+                    <div class="todo-actions">
+                        <button class="delete-btn" onclick="deleteTask(${task.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update statistics
+        function updateStats() {
+            const total = tasks.length;
+            const completed = tasks.filter(t => t.completed).length;
+            const remaining = total - completed;
+
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('completedCount').textContent = completed;
+            document.getElementById('remainingCount').textContent = remaining;
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Allow Enter key to add task
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('taskInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addTask();
+                }
+            });
+            loadTasks();
+        });
+    </script>
+</body>
+</html>
