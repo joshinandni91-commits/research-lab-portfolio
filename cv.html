@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Nandni Joshi — CV & Professional Profile</title>
+    <meta name="description" content="Nandni Joshi — Development Economics Researcher, Public Policy Analyst, Behavioral Economics Specialist">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --ink: #e9ece6;
+            --muted: #9aa39b;
+            --paper: #111613;
+            --paper2: #181d1a;
+            --olive: #687567;
+            --moss: #56645a;
+            --rust: #a97862;
+            --line: #4d5750;
+            --white: #e9ece6;
+            --dark: #0b0e0d;
+            --grid: rgba(225, 232, 224, 0.10);
+            --success: #6ba876;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Manrope, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        body:before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.16;
+            background-image: radial-gradient(#222 0.5px, transparent 0.5px);
+            background-size: 8px 8px;
+            z-index: 100;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 80;
+            height: 62px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 28px;
+            background: rgba(17, 22, 19, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo {
+            font: 500 13px "DM Mono", monospace;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo:hover {
+            color: var(--rust);
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 24px;
+            font: 400 10px "DM Mono", monospace;
+            text-transform: uppercase;
+        }
+
+        .navlinks a {
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .navlinks a:hover {
+            color: var(--rust);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 40px 40px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+            padding-top: 40px;
+        }
+
+        .name {
+            font-family: "Libre Baskerville", serif;
+            font-size: 72px;
+            line-height: 1;
+            margin: 0 0 10px;
+            letter-spacing: -0.075em;
+        }
+
+        .tagline {
+            font: 12px "DM Mono", monospace;
+            text-transform: uppercase;
+            color: var(--moss);
+            letter-spacing: 0.16em;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font: 11px "DM Mono", monospace;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 25px 0;
+        }
+
+        .contact-info a {
+            color: var(--rust);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--ink);
+        }
+
+        section {
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            font-family: "Libre Baskerville", serif;
+            font-size: 48px;
+            line-height: 1;
+            margin: 0 0 40px;
+            letter-spacing: -0.06em;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 20px;
+        }
+
+        .intro-box {
+            border: 1px solid var(--line);
+            background: linear-gradient(145deg, #1b211e, #151a17);
+            padding: 35px;
+            margin-bottom: 50px;
+        }
+
+        .intro-box p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 0 0 15px;
+        }
+
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-box em {
+            color: var(--rust);
+            font-style: italic;
+        }
+
+        .education-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+        }
+
+        .year {
+            font: 11px "DM Mono", monospace;
+            color: var(--rust);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        .education-content h3 {
+            font-family: "Libre Baskerville", serif;
+            font-size: 24px;
+            margin: 0 0 8px;
+            letter-spacing: -0.03em;
+        }
+
+        .education-content p {
+            font: 13px "Manrope", sans-serif;
+            color: var(--muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .experience-item {
+            border: 1px solid var(--line);
+            background: rgba(24, 29, 26, 0.68);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .experience-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 4px;
+            background: var(--moss);
+            opacity: 0.8;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+
+        .exp-title {
+            font-family: "Libre Baskerville", serif;
+            font-size: 20px;
+            margin: 0;
+            letter-spacing: -0.03em;
+        }
+
+        .exp-date {
+            font: 10px "DM Mono", monospace;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .exp-company {
+            font: 11px "DM Mono", monospace;
+            color: var(--rust);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .exp-description {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .exp-description li {
+            margin-bottom: 8px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            border: 1px solid var(--line);
+            background: linear-gradient(145deg, #1b211e, #151a17);
+            padding: 20px;
+        }
+
+        .skill-card h4 {
+            font: 12px "DM Mono", monospace;
+            text-transform: uppercase;
+            color: var(--moss);
+            letter-spacing: 0.16em;
+            margin: 0 0 15px;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .skill-card li {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .research-item {
+            border-left: 3px solid var(--rust);
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        .research-item h3 {
+            font-family: "Libre Baskerville", serif;
+            font-size: 22px;
+            margin: 0 0 8px;
+            letter-spacing: -0.03em;
+        }
+
+        .research-label {
+            font: 10px "DM Mono", monospace;
+            color: var(--rust);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .research-item p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--muted);
+            margin: 0 0 12px;
+        }
+
+        .publication-item {
+            border: 1px solid var(--line);
+            background: rgba(24, 29, 26, 0.68);
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .pub-title {
+            font-family: "Libre Baskerville", serif;
+            font-size: 18px;
+            margin: 0 0 8px;
+            letter-spacing: -0.03em;
+        }
+
+        .pub-source {
+            font: 10px "DM Mono", monospace;
+            color: var(--moss);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .pub-desc {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 50px 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            border: 1px solid var(--line);
+            padding: 25px;
+            background: rgba(24, 29, 26, 0.5);
+        }
+
+        .stat-number {
+            font-family: "DM Mono", monospace;
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--rust);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font: 9px "DM Mono", monospace;
+            text-transform: uppercase;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border: 1px solid var(--rust);
+            background: var(--rust);
+            color: var(--dark);
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+
+        .download-btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            font: 9px "DM Mono", monospace;
+            margin-top: 80px;
+        }
+
+        @media (max-width: 850px) {
+            .container {
+                padding: 80px 20px 40px;
+            }
+
+            .name {
+                font-size: 48px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .education-item {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                gap: 15px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .navlinks {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="logo" href="index.html">RE-SEARCH LAB</a>
+        <div class="navlinks">
+            <a href="index.html">Portfolio</a>
+            <a href="cv.html">CV</a>
+            <a href="clock.html">Clock</a>
+            <a href="todo.html">Tasks</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="tagline">Development Economics · Public Policy Research</div>
+            <h1 class="name">NANDNI<br>JOSHI</h1>
+            <p class="subtitle">Economist studying why India's welfare programmes succeed in delivery but fail at adoption — connecting policy intent with behavioral reality.</p>
+            
+            <div class="contact-info">
+                <span>📧 <a href="mailto:joshinandni91@gmail.com">joshinandni91@gmail.com</a></span>
+                <span>📱 +91 7737266624</span>
+                <span>🔗 <a href="https://linkedin.com/in/nandni-joshi-517635232" target="_blank">LinkedIn</a></span>
+                <span>✍️ <a href="https://substack.com/@nandni" target="_blank">Substack</a></span>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section>
+            <h2 class="section-title">ABOUT</h2>
+            <div class="intro-box">
+                <p><em>"I study why India's welfare programmes fail at the level of human behaviour — connecting what policy intends with why people actually respond the way they do."</em></p>
+                <p>I work at the intersection of development economics, behavioural economics, and public policy — as a Research Assistant at IIM Ahmedabad, where I build the policy databases that underpin national climate and welfare policy tracking. My independent research focuses on why welfare schemes are delivered but not sustained.</p>
+                <p>My throughline is simple: <strong>a scheme that reaches a household is not the same as a scheme that is used by one.</strong> I bring an economist's rigour — regression diagnostics, decomposition methods, structured QA — to the messier, more human question of why people accept, ignore, or abandon what policy gives them.</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">864</div>
+                    <div class="stat-label">Beneficiary Fieldwork</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90+</div>
+                    <div class="stat-label">Policy Records</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Survey Respondents</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section>
+            <h2 class="section-title">EDUCATION</h2>
+            
+            <div class="education-item">
+                <div class="year">2024 — 2026</div>
+                <div class="education-content">
+                    <h3>M.A. Economics</h3>
+                    <p><strong>Pandit Deendayal Energy University (PDPU)</strong>, Ahmedabad</p>
+                    <p style="margin-top: 8px;">Development Economics · Behavioral Economics · Econometrics · Public Policy · Labour Economics</p>
+                </div>
+            </div>
+
+            <div class="education-item">
+                <div class="year">2020 — 2024</div>
+                <div class="education-content">
+                    <h3>B.Com</h3>
+                    <p><strong>Banasthali Vidyapith</strong>, Rajasthan</p>
+                    <p style="margin-top: 8px;">Economics · Mathematics · Statistics · Banking · Taxation</p>
+                </div>
+            </div>
+
+            <div class="education-item">
+                <div class="year">Appearing</div>
+                <div class="education-content">
+                    <h3>UGC NET Economics</h3>
+                    <p>National Eligibility Test for Lectureship & Junior Research Fellowship</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE SECTION -->
+        <section>
+            <h2 class="section-title">EXPERIENCE</h2>
+
+            <div class="experience-item">
+                <div class="exp-header">
+                    <h3 class="exp-title">Research Assistant</h3>
+                    <span class="exp-date">2025 — Present</span>
+                </div>
+                <div class="exp-company">Indian Institute of Management Ahmedabad (IIMA)</div>
+                <div class="exp-description">
+                    <ul>
+                        <li>Build and maintain large-scale policy databases that underpin national climate and welfare policy tracking</li>
+                        <li>Manage 90+ climate policy records with IPCC sector coding and relational architecture</li>
+                        <li>Support academic research through literature reviews, data collection, and evidence synthesis</li>
+                        <li>Conduct policy and institutional reviews for ongoing research initiatives</li>
+                        <li>QA/QC audit workflows for policy-facing datasets</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="exp-header">
+                    <h3 class="exp-title">Research Report Analyst</h3>
+                    <span class="exp-date">2021 — 2024</span>
+                </div>
+                <div class="exp-company">Blind People's Association, Ahmedabad</div>
+                <div class="exp-description">
+                    <ul>
+                        <li>Designed and conducted telephonic survey of 400+ beneficiaries over three years</li>
+                        <li>Impact assessment of Silai Se Pehchan livelihood programme</li>
+                        <li>Identified implementation gaps: weak employer linkages and geographic constraints</li>
+                        <li>Prepared formal impact assessment report for programme review</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESEARCH SECTION -->
+        <section>
+            <h2 class="section-title">RESEARCH</h2>
+
+            <div class="research-item">
+                <div class="research-label">Working Paper</div>
+                <h3>Delivered but Deserted: Behavioral Determinants of Non-Occupancy in PMAY-Urban</h3>
+                <p>India's flagship urban housing scheme has delivered millions of units — yet a significant share sit vacant after handover. This paper argues the gap is not administrative, but behavioural: a formal decomposition of why beneficiaries fail to sustain occupancy.</p>
+                <p><strong>Method:</strong> Oaxaca–Blinder decomposition separating observable household characteristics from behavioural response, grounded in 15-source literature base.</p>
+            </div>
+
+            <div class="research-item">
+                <div class="research-label">Dissertation</div>
+                <h3>Cross-State Performance of PMAY-U and PMAY-Gramin</h3>
+                <p>Comparative assessment examining how India's urban and rural housing schemes perform across states against NITI Aayog Health Index indicators — testing whether housing delivery translates into welfare gains.</p>
+            </div>
+
+            <div class="research-item">
+                <div class="research-label">Academic Fieldwork</div>
+                <h3>Apprenticeship Underutilization Among Youth</h3>
+                <p>Presented at academic seminar on youth labour markets; identified three failure mechanisms: awareness gaps, institutional coordination failures, and training-to-market mismatch.</p>
+            </div>
+
+            <div class="research-item">
+                <div class="research-label">Award</div>
+                <h3>Best Poster Award — ICETMP 2026</h3>
+                <p>PMAY effectiveness in advancing SDG targets; state-level data analysis on informal textile sector in Ahmedabad (100+ respondents)</p>
+            </div>
+        </section>
+
+        <!-- PUBLICATIONS SECTION -->
+        <section>
+            <h2 class="section-title">PUBLICATIONS & WRITING</h2>
+
+            <div class="publication-item">
+                <div class="pub-source">Substack · Economic Lens by Nandni</div>
+                <h4 class="pub-title">Access Is Not Adoption: Behavioral Analysis on PMUY</h4>
+                <p class="pub-desc">Examines why 30–40% of PMUY beneficiaries revert to biomass despite LPG access; maps adoption failure to behavioral mechanisms (present bias, social norms, information gaps).</p>
+            </div>
+
+            <div class="publication-item">
+                <div class="pub-source">Substack · Economic Lens by Nandni</div>
+                <h4 class="pub-title">When Fear Becomes the Supply Chain</h4>
+                <p class="pub-desc">Behavioral analysis of India's 2026 LPG crisis; explains demand surge through information asymmetry and panic buying mechanisms.</p>
+            </div>
+
+            <div class="publication-item">
+                <div class="pub-source">CAP Rajasthan</div>
+                <h4 class="pub-title">Why India's Skill Development Programs Aren't Translating into Jobs</h4>
+                <p class="pub-desc">Behavioral market failure analysis of the demographic dividend gap; examines institutional and behavioral barriers in youth employment.</p>
+            </div>
+
+            <div class="publication-item">
+                <div class="pub-source">CAP Rajasthan</div>
+                <h4 class="pub-title">Trap Economics</h4>
+                <p class="pub-desc">Analysis of development constraints; examines why standard interventions underperform in low-income contexts when behavioral factors are ignored.</p>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section>
+            <h2 class="section-title">SKILLS & TOOLS</h2>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h4>Research Methods</h4>
+                    <ul>
+                        <li>Primary data collection (400+ respondents)</li>
+                        <li>Survey design & sampling</li>
+                        <li>Program evaluation & impact assessment</li>
+                        <li>Oaxaca-Blinder decomposition</li>
+                        <li>Policy lifecycle analysis</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>Econometric & Statistical</h4>
+                    <ul>
+                        <li>Panel regression (EViews)</li>
+                        <li>Chi-Square & Spearman analysis</li>
+                        <li>SPSS & SEM workflows</li>
+                        <li>Diagnostic interpretation</li>
+                        <li>Structural equation modeling</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>Tools & Software</h4>
+                    <ul>
+                        <li>EViews · SPSS · Tableau</li>
+                        <li>Excel · Google Sheets</li>
+                        <li>Python & R (in development)</li>
+                        <li>Policy database architecture</li>
+                        <li>IPCC sector coding</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>Policy Knowledge</h4>
+                    <ul>
+                        <li>PMUY · PMAY · MGNREGA</li>
+                        <li>Climate policy & NDC tracking</li>
+                        <li>SDG framework mapping</li>
+                        <li>NFHS-5 · MOSPI · NITI Aayog</li>
+                        <li>Energy & agriculture policy</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>Writing & Communication</h4>
+                    <ul>
+                        <li>Policy brief drafting</li>
+                        <li>Academic report writing</li>
+                        <li>Public-facing analysis</li>
+                        <li>Data storytelling</li>
+                        <li>Economic journalism</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>Data Sources</h4>
+                    <ul>
+                        <li>NFHS-5 · MOSPI</li>
+                        <li>MSDE / NSDC / MoRD</li>
+                        <li>NITI Aayog indices</li>
+                        <li>Government policy portals</li>
+                        <li>Academic databases</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESEARCH AREAS SECTION -->
+        <section>
+            <h2 class="section-title">RESEARCH FOCUS AREAS</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h4>Behavioral Welfare Economics</h4>
+                    <ul>
+                        <li>Adoption gaps in welfare schemes</li>
+                        <li>Present bias & loss aversion</li>
+                        <li>Social norms in policy response</li>
+                        <li>Information asymmetry effects</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h4>Housing & Urban Policy</h4>
+                    <ul>
+                        <li>PMAY occupancy determinants</li>
+                        <li>Sanitation & health linkages</li>
+                        <li>Women's decision-making</li>
+                        <li>Urban-rural comparisons</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h4>Labour & Skills</h4>
+                    <ul>
+                        <li>Youth apprenticeship gaps</li>
+                        <li>Skills-to-employment mismatch</li>
+                        <li>Informal sector dynamics</li>
+                        <li>Demographic dividend utilization</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEEKING OPPORTUNITIES -->
+        <section>
+            <h2 class="section-title">SEEKING</h2>
+            <div class="intro-box">
+                <p><strong>Opportunities in:</strong></p>
+                <ul style="font-size: 15px; line-height: 1.8; margin: 15px 0; color: var(--muted);">
+                    <li>Government & public policy institutions</li>
+                    <li>Policy analysis & research organizations</li>
+                    <li>Report writing & program evaluation</li>
+                    <li>Development research & think tanks</li>
+                    <li>Economic & policy journalism</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <span>NANDNI JOSHI / RESEARCHER</span>
+            <span>ECONOMICS · POLICY · EVIDENCE</span>
+        </footer>
+    </div>
+</body>
+</html>
